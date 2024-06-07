@@ -45,6 +45,8 @@ clear.addEventListener("click", () => {
 deleteButton.addEventListener("click", () => {
     const title = list.getTitle();
     user.deleteList(title);
+    list.clearListItems();
+    list.clearTitle();
 })
 
 save.addEventListener("click", () => {
