@@ -1,34 +1,57 @@
 const listElement = document.getElementById("list");
 
 export default class List {
-    constructor(entry = "", rank = 1, entryList = [], objList = {}){
+    constructor(objList = {}, entry = "", rank = 1, entryList = [], title = null){
+        this.objList = objList;
         this.entry = entry;
         this.rank = rank;
         this.entryList = entryList;
-        this.objList = objList;
+        this.title = title;
     }
 
     listTemplate(rank = this.rank, entry = "") {
         return `<li class="draggable" draggable="true">
             <button class="remove-item">-</button>
             <label for="${rank}">${rank}</label>
-            <input id="${rank}" name="${rank}" placeholder="Enter list item">${entry}</input>
+            <input id="${rank}" name="${rank}" value="${entry}" placeholder="Enter item here"></input>
             <button class="add-item">+</button>
         </li>`;
     }
 
     createList() {
         this.clearListItems();
-        const title = document.getElementById("list-name").value;
-        const h2 = document.createElement("h2");
-        h2.textContent = title;
-        const listCont = document.querySelector("#list-creation");
-        listCont.appendChild(h2);        
+        this.clearTitle();
+        this.entry = "Enter item here";
+        this.rank = 1;
+        this.title = null;
+        this.entryList = [];
+        this.objList = {};   
+        this.addTitle();   
         this.addListItem();
     }
 
-    addToEntryList() {
+    getTitle() {
+        return this.title;
+    }
 
+    addTitle() {
+        const h2 = document.createElement("h2");
+        const listCont = document.querySelector("#list-creation");
+        if (this.title == null) {
+            const title = document.getElementById("list-name").value;
+            h2.textContent = title;
+            listCont.appendChild(h2); 
+
+            localStorage.setItem("title", JSON.stringify(title));
+        } else {
+            h2.textContent = this.title;
+            listCont.appendChild(h2);
+        }
+    }
+
+    setTitle(title) {
+        const json = JSON.parse(title);
+        this.title = json;
     }
 
     clearListItems() {
@@ -36,6 +59,9 @@ export default class List {
         allItems.forEach(item => {
             item.remove();
         })
+    }
+
+    clearTitle() {
         const activeH2 = document.querySelectorAll("h2");
         activeH2.forEach(item => {
             item.remove();
@@ -55,6 +81,10 @@ export default class List {
         parentElement.remove();
     }
 
+    resetRank() {
+        this.rank = 1;
+    }
+
     rankUp() {
         this.rank++;
     }
@@ -64,7 +94,9 @@ export default class List {
     }
 
     reorderList() {
-        array.forEach(itemEntry => {
+        this.clearListItems();
+        this.addTitle();
+        this.entryList.forEach(itemEntry => {
             this.addListItem(itemEntry);
         })
     }
@@ -83,5 +115,11 @@ export default class List {
 
     updateObject(object) {
         this.objList = object;
+    }
+
+    convertObjToArray(obj) {
+        const json = JSON.parse(obj);
+        this.objList = json; 
+        this.entryList = Object.values(json);
     }
 }

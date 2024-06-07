@@ -1,4 +1,9 @@
 export default class Drag {
+    constructor(value = "", rank = 0) {
+        this.value = value;
+        this.rank = rank;
+    }
+
     addDragClass(event) {
         const parentElement = event.target.parentElement;
         setTimeout(() => {
@@ -16,7 +21,7 @@ export default class Drag {
     getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll(".draggable:not(.drag)")];
 
-        return draggableElements.reduce((closest, child) => {
+        const active = draggableElements.reduce((closest, child) => {
             const box = child.getBoundingClientRect();
             const offset = y - box.top - box.height / 2;
             if (offset < 0 && offset > closest.offset ) {
@@ -24,18 +29,27 @@ export default class Drag {
             } else {
                 return closest;
             }
-        }, { offset: Number.NEGATIVE_INFINITY }).element
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+
+        if (active == null) {
+            console.log("undefined");
+        } else {
+            this.name = active.children[2].name;
+            this.rank = active.children[2].value;
+        }
+
+        return active;
     }
 
     getCurrentElement() {
         return document.querySelector(".drag");
     }
 
-    getHoverRank(hover) {
-        return hover.querySelector("input").name;
+    getRank() {
+        return this.rank;
     }
 
-    getHoverValue(hover) {
-        return hover.querySelector("input").value;
+    getName() {
+        return this.name;
     }
 }

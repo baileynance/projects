@@ -38,7 +38,16 @@ div h2 {
     margin: 1rem 1rem 1rem 21.5%;
 }
 
-#list-name {
+#list-creation, #load-div {
+    margin-left: 8rem;
+    margin-top: 3rem;
+}
+
+h2 {
+    margin-left: -8rem;
+}
+
+#list-name, #list-load {
     margin: 2rem 1rem 1rem 21.5%;
     height: 30px;
     padding: 0.5%;
@@ -48,13 +57,9 @@ div h2 {
     text-align: center;
 }
 
-#create {
+#create, #clear, #save, #load {
     font-size: 1rem;
-}
-
-#save, #load {
-    margin: 0 1rem;
-    font-size: 1.5rem;
+    margin: 1rem 2rem 1rem 2rem;
 }
 
 ul {
@@ -115,3 +120,33 @@ ul {
     opacity: 50%;
 }
 
+footer {
+    background-color: var(--purple);
+    color: var(--grey);
+    margin: 4rem auto -2rem auto;
+    padding: 50px 20px 50px 100px;
+}
+
+.spinner {
+    height: 30px;
+    width: 30px;
+    border: 7px solid;
+    border-radius: 50%;
+    border-color: var(--purple) var(--grey) var(--grey) var(--grey);
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    to { transform: rotate(365deg); }
+}
+
+.draggable {
+    animation-duration: 0.5s;
+    animation-name: animate-fade;
+    animation-fill-mode: backwards;
+}
+  
+@keyframes animate-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
