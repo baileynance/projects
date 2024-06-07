@@ -43,7 +43,8 @@ clear.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-    localStorage.clear();
+    const title = list.getTitle();
+    user.deleteList(title);
 })
 
 save.addEventListener("click", () => {

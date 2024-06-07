@@ -5,14 +5,12 @@ export default class User {
 
     loadList(title) {
         const json = localStorage.getItem(`${title}`);
-        console.log(json);
         const obj = JSON.parse(json);
-        console.log(json);
         return obj;
     }
 
-    deleteList() {
-
+    deleteList(title) {
+        localStorage.removeItem(`${title}`);
     }
 
     runSaveAnimation(event) {
