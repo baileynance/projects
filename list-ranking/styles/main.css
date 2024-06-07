@@ -57,7 +57,7 @@ h2 {
     text-align: center;
 }
 
-#create, #clear, #save, #load {
+#create, #clear, #save, #load, #delete {
     font-size: 1rem;
     margin: 1rem 2rem 1rem 2rem;
 }

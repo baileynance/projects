@@ -35,12 +35,14 @@ export default class List {
     }
 
     addTitle() {
+        this.clearTitle();
         const h2 = document.createElement("h2");
         const listCont = document.querySelector("#list-creation");
         if (this.title == null) {
             const title = document.getElementById("list-name").value;
             h2.textContent = title;
             listCont.appendChild(h2); 
+            this.setTitle(title);
 
             localStorage.setItem("title", JSON.stringify(title));
         } else {
@@ -50,8 +52,12 @@ export default class List {
     }
 
     setTitle(title) {
+        this.title = title;
+    }
+
+    convertTitle(title) {
         const json = JSON.parse(title);
-        this.title = json;
+        this.setTitle(json);
     }
 
     clearListItems() {

@@ -13,7 +13,7 @@ if (refreshList == null) {
     console.log("hello, world!");
 } else {
     list.convertObjToArray(refreshList);
-    list.setTitle(refreshTitle);
+    list.convertTitle(refreshTitle);
     list.reorderList();
 }
 
@@ -21,8 +21,9 @@ const create = document.getElementById("create");
 const clear = document.getElementById("clear");
 const save = document.getElementById("save");
 const load = document.getElementById("load");
+const deleteButton = document.getElementById("delete");
 const ul = document.querySelector("ul");
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("button:not(.remove-item, .add-item)");
 
 buttons.forEach(element => {
     element.addEventListener("click", (event) => {
@@ -41,6 +42,10 @@ clear.addEventListener("click", () => {
     list.clearTitle();
 });
 
+deleteButton.addEventListener("click", () => {
+    localStorage.clear();
+})
+
 save.addEventListener("click", () => {
     const title = list.getTitle();
     const obj = list.getObject();
@@ -48,11 +53,10 @@ save.addEventListener("click", () => {
 })
 
 load.addEventListener("click", () => {
-    const list = new List();
-
     const title = document.getElementById("list-load").value;
     const li = user.loadList(title);
     const array = Object.values(li);
+    list.setTitle(title);
     list.updateEntries(array);
     list.reorderList();
 })
@@ -73,7 +77,6 @@ ul.addEventListener("change", (event) => {
     obj[event.target.id] = input;
     list.updateObject(obj);
     const array = Object.values(obj);
-    console.log(obj);
     localStorage.setItem("list", JSON.stringify(obj));
     list.updateEntries(array);
 })
