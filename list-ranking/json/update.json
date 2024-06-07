@@ -1,0 +1,37 @@
+{
+    "@context": [
+      "http://schema4i.org/Thing.jsonld",
+      "http://schema4i.org/Action.jsonld",
+      "http://schema4i.org/CreateAction.jsonld"
+    ],
+    "@type": "UpdateAction",
+    "Result": {
+      "@context": [
+        "http://schema4i.org/DataLakeItem.jsonld",
+        "http://schema4i.org/UserAccount.jsonld",
+        "http://schema4i.org/OfferForPurchase.jsonld",
+        "http://schema4i.org/Offer.jsonld",
+        "http://schema4i.org/Organization.jsonld",
+        "http://schema4i.org/PostalAddress.jsonld"
+      ],
+      "@type": "DataLakeItem",
+      "Identifier": "4711",
+      "Name": "X-PLOR Group",
+      "Creator": {
+        "@type": "UserAccount",
+        "Identifier": "USERID-4711"
+      },
+      "About": {
+        "@type": "Organization",
+        "Name": "X-PLOR GmbH",
+        "Address": {
+          "@type": "PostalAddress",
+          "StreetAddress": "Lindenstrasse",
+          "HouseNumber": "48-52",
+          "PostalCode": "40233",
+          "AddressLocality": "Duesseldorf",
+          "AddressCountry": "Germany"
+        }
+      }
+    }
+  }

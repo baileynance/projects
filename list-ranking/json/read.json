@@ -1,0 +1,28 @@
+{
+    "@context": [
+      "http://schema4i.org/Thing.jsonld",
+      "http://schema4i.org/Action.jsonld",
+      "http://schema4i.org/SearchAction.jsonld"
+    ],
+    "@type": "SearchAction",
+    "Object": {
+      "@context": [
+        "http://schema4i.org/Thing.jsonld",
+        "http://schema4i.org/Filter",
+        "http://schema4i.org/DataLakeItem",
+        "http://schema4i.org/UserAccount"
+      ],
+      "@type": "Filter",
+      "FilterItem": {
+        "@type": "DataLakeItem",
+        "Creator": {
+          "@type": "UserAccount",
+          "Identifier": "USERID-4711"
+        },
+        "Name": "X-PLOR Group",
+        "About": {
+          "@type": "Organization"
+        }
+      }
+    }
+  }
