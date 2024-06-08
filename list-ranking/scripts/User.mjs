@@ -20,7 +20,7 @@ export default class User {
         setTimeout(() => {
             event.target.textContent = content;
             event.target.classList.remove("spinner");
-        }, 1000);
+        }, 500);
         
     }
 }

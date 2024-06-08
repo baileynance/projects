@@ -10,39 +10,71 @@ const options = {
 		'@context': [
 			'http://schema4i.org/Thing.jsonld',
 			'http://schema4i.org/Action.jsonld',
-			'http://schema4i.org/SearchAction.jsonld'
+			'http://schema4i.org/CreateAction.jsonld'
 		],
-		'@type': 'DeleteAction',
-		Object: {
+		'@type': 'CreateAction',
+		Result: {
 			'@context': [
-				'http://schema4i.org/Thing.jsonld',
-				'http://schema4i.org/Filter',
-				'http://schema4i.org/DataLakeItem',
-				'http://schema4i.org/UserAccount'
+				'http://schema4i.org/DataLakeItem.jsonld',
+				'http://schema4i.org/UserAccount.jsonld',
+				'http://schema4i.org/OfferForPurchase.jsonld',
+				'http://schema4i.org/Offer.jsonld',
+				'http://schema4i.org/Organization.jsonld',
+				'http://schema4i.org/PostalAddress.jsonld'
 			],
-			'@type': 'Filter',
-			FilterItem: {
-				'@type': 'DataLakeItem',
-				Creator: {
-					'@type': 'UserAccount',
-					Identifier: 'USERID-4711'
-				},
-				Name: 'X-PLOR Group',
-				Identifier: 'USERID-4711_07821380-a9ea-11ed-bc53-59e8e73b3d77',
-				About: {
-					'@type': 'Organization'
+			'@type': 'DataLakeItem',
+			Name: 'X-PLOR Group',
+			Creator: {
+				'@type': 'UserAccount',
+				Identifier: 'USERID-4711'
+			},
+			About: {
+				'@type': 'Organization',
+				Name: 'X-PLOR GmbH',
+				Address: {
+					'@type': 'PostalAddress',
+					StreetAddress: 'Lindenstrasse',
+					HouseNumber: '48-52',
+					PostalCode: '40233',
+					AddressLocality: 'Duesseldorf',
+					AddressCountry: 'D'
 				}
 			}
 		}
 	}
 };
 
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
+// try {
+// 	const response = await fetch(url, options);
+// 	const result = await response.text();
+// 	console.log(result);
+// } catch (error) {
+// 	console.error(error);
+// }
+
+export default class Storage {
+    async saveList(title, items) {
+        const response = fetch("https://baileynance.github.io/projects/list-ranking/json/create.json");
+        const result = await response.text();
+        result.Name(JSON.stringify(title));
+        result.About(JSON.stringify(items));
+    }
+
+    async readList(title) {
+        const response = fetch("https://baileynance.github.io/projects/list-ranking/json/read.json");
+        const result = await response.text();
+        return JSON.parse(result.FilterItem.title);
+    }
+
+    async updateList(title) {
+        const response = fetch("https://baileynance.github.io/projects/list-ranking/json/update.json");
+        const result = await response.text();
+        result.FilterItem.title.About(JSON.stringify(items));
+    }
+
+    async deleteList(title) {
+        const response = fetch("https://baileynance.github.io/projects/list-ranking/json/delete.json");
+        const result = await response.text();
+        result.FilterItem.title.About("");
+    }
 }
-
-

@@ -21,6 +21,14 @@ body {
     background-color: white;
 }
 
+h1, h2 {
+    font-family: 'Noto Sans', 'Crimson Text', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+p {
+    font-family:  'Lekton', 'Roboto Mono', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 header {
     background-color: var(--purple);
     height: 4rem;
@@ -58,8 +66,22 @@ h2 {
 }
 
 #create, #clear, #save, #load, #delete {
-    font-size: 1rem;
+    color: var(--grey);
+    background-color: var(--purple);
+    padding: 8px 8px;
+    font-size: 16px;
     margin: 1rem 2rem 1rem 2rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+#create:active, #clear:active, #save:active, #load:active, #delete:active {
+    background-color: #4c00ce;
+    box-shadow: 0 5px var(--grey);
+    transform: translateY(2px);
 }
 
 ul {
@@ -114,6 +136,7 @@ ul {
     border: 2px solid var(--dark-grey);
     border-radius: 4px;
     height: 2rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .drag {
@@ -132,7 +155,7 @@ footer {
     width: 30px;
     border: 7px solid;
     border-radius: 50%;
-    border-color: var(--purple) var(--grey) var(--grey) var(--grey);
+    border-color: var(--grey) var(--purple) var(--purple) var(--purple);
     animation: rotate 1.5s linear infinite;
 }
 

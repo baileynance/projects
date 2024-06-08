@@ -1,6 +1,7 @@
 import List from "./List.mjs";
 import Drag from "./Drag.mjs";
 import User from "./User.mjs";
+import Storage from "./Storage.mjs";
 
 const refreshList = localStorage.getItem("list");
 const refreshTitle = localStorage.getItem("title");
@@ -8,6 +9,7 @@ const refreshTitle = localStorage.getItem("title");
 const list = new List(refreshList);
 const drag = new Drag();
 const user = new User();
+const storage = new Storage();
 
 if (refreshList == null) {
     console.log("hello, world!");
